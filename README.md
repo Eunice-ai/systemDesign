@@ -1,68 +1,18 @@
 # systemDesign
 
-    Start
-      |
-      v
-+-----------------+
-| Define Requirements | (User needs, functionalities)
-+-----------------+
-      |
-      v
-+-----------------+
-| Design High-Level  |
-| Architecture     | (Overall system structure)
-+-----------------+
-      |
-v
-+-----------------+
-| Decompose into    |
-| Sub-modules       | (Break down functionalities)
-+-----------------+
-      |
-      v (Repeat for each Sub-module)
-+-----------------+
-| Refine Sub-module |
-| Functionality     | (Define inputs, outputs, logic)
-+-----------------+
-      |
-      v (If Sub-module complex)
-+-----------------+
-| Decompose further |
-| into Sub-modules  |
-+-----------------+
-      |
-      v (End of Sub-module refinement)
-+-----------------+
-| Refine Interfaces |  (Data flow between modules)
-+-----------------+
-      |
-      v
-+-----------------+
-| Code Modules      | (Implementation)
-+-----------------+
-      |
-      v
-+-----------------+
-| Integrate Modules  | (Combine modules for testing)
-+-----------------+
-      |
-      v
-+-----------------+
-| Test & Debug      | (Identify and fix errors)
-+-----------------+
-      |
-      v (Fix issues, integrate if needed)
-+-----------------+
-| System Complete?  | (Yes/No)
-+-----------------+
-      |
-      v (No)
-+-----------------+
-| Go back to       |
-| Integration Step  |
-+-----------------+
-      |
-      v (Yes)
-+-----------------+
-| End               |
-+-----------------+
+graph TD
+    Start((Start))
+    Start --> DefineRequirements((Define Requirements))
+    DefineRequirements --> DesignHighLevel((Design High-Level Architecture))
+    DesignHighLevel --> DecomposeSubmodules((Decompose into Sub-modules))
+    DecomposeSubmodules --> RefineSubmoduleFunctionality((Refine Sub-module Functionality))
+    RefineSubmoduleFunctionality -->|If Sub-module complex| DecomposeFurther((Decompose further into Sub-modules))
+    RefineSubmoduleFunctionality -->|End of Sub-module refinement| RefineInterfaces((Refine Interfaces))
+    DecomposeFurther --> RefineSubmoduleFunctionality
+    RefineInterfaces --> CodeModules((Code Modules))
+    CodeModules --> IntegrateModules((Integrate Modules))
+    IntegrateModules --> TestDebug((Test & Debug))
+    TestDebug --> SystemComplete((System Complete?))
+    SystemComplete -->|No| GoBack((Go back to Integration Step))
+    SystemComplete -->|Yes| End((End))
+    GoBack --> IntegrateModules
